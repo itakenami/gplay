@@ -1,0 +1,11 @@
+<div id="${_name}">
+    <ul>
+        %{
+        String[] tabs = _tabs.split(",");
+        String[] labels = _labels.split(",");
+        for(int x=0;x<tabs.length;x++) {}%
+        <li><a href="#${tabs[x]}">${labels[x]}</a></li>
+        %{}}%
+    </ul>
+    #{doBody/}
+</div>

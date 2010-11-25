@@ -1,0 +1,62 @@
+#{extends 'main.html' /}
+
+<script type="text/javascript">
+
+    $(function(){
+        
+        #{button_fnc obj:'#btn_buscar', icon:'ui-icon-search'/}
+
+        #{button_fnc obj:'.btn_edit', icon:'ui-icon-pencil', text:false/}
+        #{button_fnc obj:'.btn_delete', icon:'ui-icon-trash', text:false/}
+        #{button_fnc obj:'#btn_novo', icon:'ui-icon-plus'/}
+
+        #{grid_fnc/}
+
+    });
+
+    
+
+    function buscar(){
+        #{ajax_src form:'projeto', url:'projetos/busca'}
+        $("#result").empty().html(data);
+        #{/ajax_src}
+    }
+
+
+</script>
+
+
+#{box}
+#{button label:'Novo Projeto', id:'btn_novo', href:@Projetos.form()/}
+<input id="projeto" class="text ui-widget-content ui-corner-all" type="text" name="projeto"/>
+#{button label:'Buscar', id:'btn_buscar', onclick:'buscar()'/}
+#{/box}
+
+<div id="result">
+
+    #{grid titulo:'Lista de Projetos', rodape:'Foram encontrados um total de '+ projetos.size() +' projeto(s)'}
+    <table class="ui-grid-content ui-widget-content">
+        <thead>
+            <tr>
+                <th align="center" class="ui-state-default">&nbsp;</th>
+                <th align="left" class="ui-state-default">Nome</th>
+                <th align="left" class="ui-state-default">Descrição</th>
+                <th class="ui-state-default">Data Inicio</th>
+                <th class="ui-state-default">Data Fim</th>
+            </tr>
+        </thead>
+        <tbody>
+            #{list projetos, as:'p'}
+            <tr>
+                <td style="width:55px" class="ui-widget-content">#{button label:'Editar', class:'btn_edit', href:@Projetos.form(p.id)/}#{button label:'Excluir', class:'btn_delete', href:@Projetos.delete(p.id)/}</td>
+                <td style="width:300px;text-align: left" class="ui-widget-content"><a href="@{Projetos.view(p.id)}">${p.nome}</a></td>
+                <td style="text-align: left" class="ui-widget-content">${p.descricao}</td>
+                <td style="width:100px;text-align: center" class="ui-widget-content">${p.data_inicio?.format('dd/MM/yyyy')}</td>
+                <td style="width:100px;text-align: center" class="ui-widget-content">${p.data_fim?.format('dd/MM/yyyy')}</td>
+            </tr>
+            #{/list}
+        </tbody>
+    </table>
+    #{/grid}
+
+</div>

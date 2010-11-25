@@ -1,0 +1,42 @@
+#{extends 'main.html' /}
+
+<script type="text/javascript">
+
+    $(function(){
+
+        #{button_fnc obj:'.btn_edit', icon:'ui-icon-pencil', text:false/}
+        #{button_fnc obj:'.btn_delete', icon:'ui-icon-trash', text:false/}
+        #{button_fnc obj:'#btn_novo', icon:'ui-icon-plus'/}
+
+        #{grid_fnc/}
+
+    });
+
+
+</script>
+
+#{box}
+#{button label:'Novo Cargo', id:'btn_novo', href:@Cargos.form()/}
+#{/box}
+
+
+#{grid titulo:'Lista de Cargos', rodape:'Foram encontrados um total de '+ cargos.size() +' cargo(s)'}
+<table class="ui-grid-content ui-widget-content">
+    <thead>
+        <tr>
+            <th align="center" class="ui-state-default">&nbsp;</th>
+            <th align="left" class="ui-state-default">Nome</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{list items:cargos, as:'c'}
+        <tr>
+            <td style="width:55px" class="ui-widget-content">#{button label:'Editar', class:'btn_edit', href:@Cargos.form(c.id)/}#{button label:'Excluir', class:'btn_delete', href:@Cargos.delete(c.id)/}</td>
+            <td style="text-align: left" class="ui-widget-content">${c.nome.customizeTag()}</td>
+        </tr>
+        #{/list}
+    </tbody>
+</table>
+#{/grid}
+
+

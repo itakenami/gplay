@@ -1,0 +1,47 @@
+body {
+    margin: 0px 0px 0px 0px;
+    font: 62.5% "Trebuchet MS", sans-serif;
+}
+
+body * {
+    font-size: 100%;
+    font-family: "Trebuchet MS", Trebuchet, Verdana, Helvetica, Arial, sans-serif;
+}
+
+body * * {
+    font-size: 100%;
+}
+
+.labelform {
+    font-size: 11px;
+    padding-top: 5px;
+}
+
+input {
+    font-size: 11px;
+    height: 22px;
+}
+
+
+
+
+label{
+    float: left;
+    width: 120px;
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+
+
+form input, textarea{
+    margin-bottom: 5px;
+}
+
+.error{
+    font-size: 10px;
+    color: red;
+    vertical-align: middle;
+}
+
+

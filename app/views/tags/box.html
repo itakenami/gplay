@@ -1,0 +1,14 @@
+#{if _title}
+<div style="margin-bottom: 6px" class="ui-grid ui-widget ui-widget-content ui-corner-all">
+    <div class="ui-grid-header ui-widget-header ui-corner-top">${_title}</div>
+    <div>
+        #{doBody/}
+    </div>
+</div>
+#{/if}#{else}
+<div style="margin-bottom: 6px">
+    <div>
+        #{doBody/}
+    </div>
+</div>
+#{/else}

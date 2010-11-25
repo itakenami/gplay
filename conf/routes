@@ -1,0 +1,26 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Projetos.index
+
+
+GET     /projetos/formrequisitos/{projeto_id}                      Projetos.formRequisitos
+GET     /projetos/formrequisitos/{projeto_id}/{id}                 Projetos.formRequisitos
+POST    /projetos/saverequisitos/{id}                              Projetos.saveRequisitos
+
+
+# Rotas Padrão
+GET     /{controller}                           {controller}.index
+GET     /{controller}/view/{id}                 {controller}.view
+GET     /{controller}/form/{id}                 {controller}.form
+GET     /{controller}/delete/{id}               {controller}.delete
+POST    /{controller}/save/{id}                 {controller}.save
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}
+*       /{controller}/{action}/{id}             {controller}.{action}

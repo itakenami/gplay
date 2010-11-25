@@ -1,0 +1,8 @@
+jQuery.ajax({
+    type: 'POST',
+    data: $('#${_form}').serialize(),
+    url:'${_url}',
+    success: function(data){
+        #{doBody/}
+    }
+});

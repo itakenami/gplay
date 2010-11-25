@@ -1,0 +1,57 @@
+#{extends 'main.html' /}
+
+<script type="text/javascript">
+
+    $(function(){
+        #{tab_fnc tab:'tabs'/}
+        #{button_fnc obj:'#btn_salvar', icon:'ui-icon-disk'/}
+        #{button_fnc obj:'#btn_voltar', icon:'ui-icon-arrowreturnthick-1-w'/}
+    });
+
+</script>
+
+<form action="@{Projetos.saveRequisitos(requisito?.id)}" method="POST">
+
+    #{ifErrors}
+    #{box_error label:'Alerta:', message:'Verifique os erros.'/}
+    <br>
+    #{/ifErrors}
+
+    #{box}
+    #{button label:'Voltar', id:'btn_voltar', href:@Projetos.view(projeto.id), param:'#tabs-3'/}
+    #{/box}
+
+    #{tab name:'tabs', tabs:'tabs-1', labels:'Requisito'}
+    <div id="tabs-1">
+        
+        #{field 'requisitoVO.projeto.id'}
+        <label>Projeto:</label>
+        <input type="hidden" name="${field.name}" value="${projeto?.id}" />
+        <div class="labelform">${projeto.nome}</div>
+        #{/field}
+
+        <br/>
+
+        #{field 'requisitoVO.nome'}
+        <label>Nome:</label>
+        <input style="width: 300px;" class="text ui-widget-content ui-corner-all" type="text" name="${field.name}" value="${requisito?.nome}" />
+        <span class="error">#{error 'requisito.nome' /}</span>
+        #{/field}
+
+        <br/>
+
+        #{field 'requisitoVO.descricao'}
+        <label>Descrição:</label>
+        <textarea style="width: 300px;height: 200px" class="text ui-widget-content ui-corner-all" name="${field.name}">${requisito?.descricao}</textarea>
+        <span class="error">#{error 'requisito.descricao' /}</span>
+        #{/field}
+
+        <br/>
+
+        <label></label>
+        #{button label:'Salvar', id:'btn_salvar', type:'submit'/}
+        
+    </div>
+    #{/tab}
+
+</form>

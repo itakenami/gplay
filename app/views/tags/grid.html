@@ -1,0 +1,15 @@
+<div class="ui-grid ui-widget ui-widget-content ui-corner-all">
+    #{if _titulo}
+    <div class="ui-grid-header ui-widget-header ui-corner-top">${_titulo}</div>
+    #{/if}
+    #{doBody/}
+    #{if _rodape}
+    <div class="ui-grid-footer ui-widget-header ui-corner-bottom ui-helper-clearfix">
+        <!--div class="ui-grid-paging ui-helper-clearfix">
+            <a href="?results=1" class="ui-grid-paging-prev ui-state-default ui-corner-left"><span class="ui-icon ui-icon-triangle-1-w" title="previous set of results"></span></a>
+            <a href="?results=3" class="ui-grid-paging-next ui-state-default ui-corner-right"><span class="ui-icon ui-icon-triangle-1-e" title="next set of results"></span></a>
+        </div-->
+        <div class="ui-grid-results">${_rodape}</div>
+    </div>
+    #{/if}
+</div>

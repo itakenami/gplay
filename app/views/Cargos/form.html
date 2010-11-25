@@ -1,0 +1,46 @@
+#{extends 'main.html' /}
+
+<script type="text/javascript">
+
+    $(function(){
+        #{tab_fnc tab:'tabs'/}
+        #{button_fnc obj:'.btn_salvar', icon:'ui-icon-disk'/}
+        #{button_fnc obj:'#btn_voltar', icon:'ui-icon-arrowreturnthick-1-w'/}
+    });
+
+</script>
+
+
+<form action="@{Cargos.save(cargo?.id)}" method="POST">
+
+    #{ifErrors}
+    #{box_error label:'Alerta:', message:'Verifique os erros.'/}
+    <br>
+    #{/ifErrors}
+
+    #{box}
+    #{button label:'Voltar', id:'btn_voltar', href:@Cargos.index()/}
+    #{/box}
+
+    #{tab name:'tabs', tabs:'tabs-1', labels:'Informações de Cargo'}
+    <div id="tabs-1">
+
+
+        #{field 'cargoVO.nome'}
+        <label>Nome:</label>
+        <input style="width: 300px" class="text ui-widget-content ui-corner-all" type="text" name="${field.name}" value="${cargo?.nome}" />
+        <span class="error">#{error 'cargo.nome'/}</span>
+        #{/field}
+        <br/>
+
+        <label></label>
+        #{button label:'Salvar', class:'btn_salvar', type:'submit'/}
+
+    </div>
+    #{/tab}
+
+
+
+</form>
+
+

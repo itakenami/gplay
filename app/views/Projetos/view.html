@@ -1,0 +1,86 @@
+#{extends 'main.html' /}
+
+<script type="text/javascript">
+
+    $(function(){
+
+        #{tab_fnc tab:'tabs'/}
+        #{button_fnc obj:'#btn_novo', icon:'ui-icon-plus'/}
+        #{button_fnc obj:'#btn_voltar', icon:'ui-icon-arrowreturnthick-1-w'/}
+        #{button_fnc obj:'#btn_edit', icon:'ui-icon-pencil'/}
+        
+    });
+
+</script>
+
+#{box}
+#{button label:'Voltar', id:'btn_voltar', href:@Projetos.index()/}
+#{button label:'Editar', id:'btn_edit', href:@Projetos.form(projeto.id)/}
+#{button label:'Novo Requisito', id:'btn_novo', href:@Projetos.formRequisitos(projeto.id)/}
+#{/box}
+
+#{tab name:'tabs', tabs:'tabs-1,tabs-2,tabs-3', labels:'Projeto,Analistas,Requisitos'}
+<div id="tabs-1">
+
+    <label>Nome:</label>
+    <div class="labelform">${projeto.nome}</div>
+
+    <br/>
+
+
+    <label>Descrição:</label>
+    <div class="labelform">${projeto.descricao}</div>
+
+    <br/>
+
+    <label>Data Inicio:</label>
+    <div class="labelform">${projeto.data_inicio.format('dd/MM/yyyy')}</div>
+
+    <br/>
+
+    <label>Data Fim:</label>
+    <div class="labelform">${projeto.data_fim.format('dd/MM/yyyy')}</div>
+
+</div>
+<div id="tabs-2">
+
+    #{grid}
+    <table class="ui-grid-content ui-widget-content">
+        <thead>
+            <tr>
+                <th align="left" class="ui-state-default">Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            #{list projeto.analistas, as:'a'}
+            <tr>
+                <td style="width:300px;text-align: left" class="ui-widget-content">${a.nome}</td>
+            </tr>
+            #{/list}
+        </tbody>
+    </table>
+    #{/grid}
+
+
+</div>
+<div id="tabs-3">
+    #{grid}
+    <table class="ui-grid-content ui-widget-content">
+        <thead>
+            <tr>
+                <th align="left" class="ui-state-default">Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            #{list projeto.requisitos, as:'r'}
+            <tr>
+                <td style="width:300px;text-align: left" class="ui-widget-content"><a href="@{Projetos.formRequisitos(projeto.id,r.id)}">${r.nome}</a></td>
+            </tr>
+            #{/list}
+        </tbody>
+    </table>
+    #{/grid}
+
+</div>
+
+#{/tab}

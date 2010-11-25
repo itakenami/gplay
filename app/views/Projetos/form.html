@@ -1,0 +1,135 @@
+#{extends 'main.html' /}
+
+<script type="text/javascript">
+
+    $(function(){
+        #{tab_fnc tab:'tabs'/}
+        #{button_fnc obj:'.btn_salvar', icon:'ui-icon-disk'/}
+        #{button_fnc obj:'#btn_voltar', icon:'ui-icon-arrowreturnthick-1-w'/}
+        #{date_fnc/}
+    });
+
+</script>
+
+<form action="@{Projetos.save(projeto?.id)}" method="POST">
+
+    #{ifErrors}
+    #{box_error label:'Alerta:', message:'Verifique os erros.'/}
+    <br>
+    #{/ifErrors}
+
+    #{box}
+    #{button label:'Voltar', id:'btn_voltar', href:@Projetos.index()/}
+    #{/box}
+
+    <!--Tab criado manualmente por necessidade da tela-->
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Informações do Projeto</a></li>
+            #{ifnot projeto?.id}
+            <li><a href="#tabs-2">Requisitos Iniciais</a></li>
+            #{/ifnot}
+        </ul>
+
+        <div id="tabs-1">
+
+            #{field 'projetoVO.nome'}
+            <label>Nome:</label>
+            <input style="width: 300px" class="text ui-widget-content ui-corner-all" type="text" name="${field.name}" value="${projeto?.nome}" />
+            <span class="error">#{error 'projeto.nome' /}</span>
+            #{/field}
+
+            <br/>
+
+            #{field 'projetoVO.descricao'}
+            <label>Descrição:</label>
+            <textarea style="width: 300px;height: 200px" class="text ui-widget-content ui-corner-all" name="${field.name}">${projeto?.descricao}</textarea>
+            <span class="error">#{error 'projeto.descricao' /}</span>
+            #{/field}
+
+            <br/>
+
+            #{field 'projetoVO.data_inicio'}
+            <label>Data Inicio:</label>
+            <input class="datepicker text ui-widget-content ui-corner-all" type="text" name="${field.name}" value="${projeto?.data_inicio?.format('dd/MM/yyyy')}" />
+            <span class="error">#{error 'projeto.data_inicio' /}</span>
+            #{/field}
+
+            <br/>
+
+            #{field 'projetoVO.data_fim'}
+            <label>Data Fim:</label>
+            <input class="datepicker text ui-widget-content ui-corner-all" type="text" name="${field.name}" value="${projeto?.data_fim?.format('dd/MM/yyyy')}" />
+            <span class="error">#{error 'projeto.data_fim' /}</span>
+            #{/field}
+
+            <br/>
+
+            #{field 'projetoVO.analistas.id'}
+            <label>Analistas:</label>
+            #{listcheck width:'300', height:'200'}
+            #{list analistas, as:'a'}
+            #{check value:a.id, label:a.nome, name:field.name /}
+            #{/list}
+            #{/listcheck}
+            <label></label><span style="position:absolute;bottom: 240px;left: 440px" class="error">#{error 'projeto.analistas' /}</span>
+            <!--Caso precise carregar os selecionado-->
+            #{if projeto?.analistas}
+            <script>
+                #{list projeto.analistas, as:'a'}
+                #{check_scr name:field.name ,value:a.id/}
+                #{/list}
+            </script>
+            #{/if}
+            #{/field}
+
+            <br/>
+
+            <label></label>
+            #{button label:'Salvar', class:'btn_salvar', type:'submit'/}
+
+        </div>
+        #{ifnot projeto?.id}
+        <div id="tabs-2">
+
+            <!--Ao criar o projeto pode inserir 2 requisitos-->
+
+            #{field 'req.nome'}
+            <label>Nome Requisito 1:</label>
+            <input type="text" style="width: 300px" class="text ui-widget-content ui-corner-all" name="${field.name}" value="" />
+            #{/field}
+
+            <br/>
+
+            #{field 'req.descricao'}
+            <label>Desc Requisito 1:</label>
+            <textarea style="width: 300px;height: 200px" class="text ui-widget-content ui-corner-all" name="${field.name}"></textarea>
+            #{/field}
+
+            <br/>
+
+            #{field 'req.nome'}
+            <label>Nome Requisito 2:</label>
+            <input type="text" style="width: 300px" class="text ui-widget-content ui-corner-all" name="${field.name}" value="" />
+            #{/field}
+
+            <br/>
+
+            #{field 'req.descricao'}
+            <label>Desc Requisito 2:</label>
+            <textarea style="width: 300px;height: 200px" class="text ui-widget-content ui-corner-all" name="${field.name}"></textarea>
+            #{/field}
+
+            <br/>
+
+            <label></label>
+
+            #{button label:'Salvar', class:'btn_salvar', type:'submit'/}
+
+        </div>
+        #{/ifnot}
+
+    </div>
+
+
+</form>

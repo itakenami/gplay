@@ -1,0 +1,28 @@
+*{ Testes funcionais utilizando o Selenium }*
+
+#{fixture delete:'all', load:'data.yml' /}
+
+#{selenium 'Testar Crud de Cargos'}
+    open('/')
+    click('link=Cargos')
+    waitForPageToLoad('30000')
+    click('link=Novo Cargo')
+    waitForPageToLoad('30000')
+    type('cargoVO.nome', 'Programador')
+    click('//input[@value='Salvar']')
+    waitForPageToLoad('30000')
+    verifyTrue(isTextPresent('Registro salvo com sucesso.'))
+    click('link=Cargos')
+    waitForPageToLoad('30000')
+    click('link=Editar')
+    waitForPageToLoad('30000')
+    type('cargoVO.nome', 'Programador Alterado')
+    click('//input[@value='Salvar']')
+    waitForPageToLoad('30000')
+    verifyTrue(isTextPresent('Registro salvo com sucesso.'))
+    click('link=Cargos')
+    waitForPageToLoad('30000')
+    click('link=Apagar')
+    waitForPageToLoad('30000')
+    verifyTrue(isTextPresent('Registro apagado com sucesso.'))
+#{/selenium}

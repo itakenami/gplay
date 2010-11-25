@@ -1,0 +1,14 @@
+.ui-grid {width: 100%}
+.ui-grid .ui-grid-content { width: 100%; border-collapse: collapse; }
+.ui-grid table tbody td, .ui-grid .ui-grid-header, .ui-grid table thead a { padding: .4em;  }
+.ui-grid table tbody td {  text-align: right; font-weight: normal;  }
+.ui-grid .ui-grid-header, .ui-grid .ui-grid-footer { padding: .8em .4em; text-align: center; }
+.ui-grid .ui-grid-footer { background-image: none; font-weight: normal; text-align: left; }
+.ui-grid table thead a { display: block;  }
+.ui-grid table thead tr th { height: 22px  }
+.ui-grid .ui-icon { float: right; }
+.ui-grid .ui-grid-paging { float: right; }
+.ui-grid .ui-grid-paging-prev { float: left; width: 16px; height: 16px; }
+.ui-grid .ui-grid-paging-next { float: right; width: 16px; height: 16px; }
+.ui-grid .ui-grid-results {  }
+.ui-grid-hover { background: beige}

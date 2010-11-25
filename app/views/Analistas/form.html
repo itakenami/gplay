@@ -1,0 +1,63 @@
+#{extends 'main.html' /}
+
+<script type="text/javascript">
+
+    $(function(){
+        #{tab_fnc tab:'tabs'/}
+        #{button_fnc obj:'.btn_salvar', icon:'ui-icon-disk'/}
+        #{button_fnc obj:'#btn_voltar', icon:'ui-icon-arrowreturnthick-1-w'/}
+    });
+
+</script>
+
+<form action="@{Analistas.save(analista?.id)}" method="POST">
+
+
+    #{ifErrors}
+    #{box_error label:'Alerta:', message:'Verifique os erros.'/}
+    <br>
+    #{/ifErrors}
+
+    #{box}
+    #{button label:'Voltar', id:'btn_voltar', href:@Analistas.index()/}
+    #{/box}
+
+    #{tab name:'tabs', tabs:'tabs-1', labels:'Informações de Analista'}
+    <div id="tabs-1">
+
+        #{field 'analistaVO.nome'}
+        <label>Nome:</label>
+        <input style="width: 300px" class="text ui-widget-content ui-corner-all" type="text" name="${field.name}" value="${analista?.nome}" />
+        <span class="error">#{error 'analista.nome' /}</span>
+        #{/field}
+
+        <br/>
+
+        #{field 'analistaVO.especialidade'}
+        <label>Especialidade:</label>
+        <input style="width: 300px" class="text ui-widget-content ui-corner-all" type="text" name="${field.name}" value="${analista?.especialidade}" />
+        <span class="error">#{error 'analista.especialidade' /}</span>
+        #{/field}
+
+        <br/>
+
+        #{field 'analistaVO.cargo.id'}
+        <label>Cargo:</label>
+        <select class="text ui-widget-content ui-corner-all" style="width: 300px" name="${field.name}">
+            #{list cargos, as:'c'}
+            <option value="${c.id}" ${analista?.cargo?.id == c.id ? 'selected' : ''}>${c.nome}</option>
+            #{/list}
+        </select>
+        <span class="error">#{error 'analista.cargo' /}</span>
+        #{/field}
+
+        <br/>
+
+        <label></label>
+        #{button label:'Salvar', class:'btn_salvar', type:'submit'/}
+
+    </div>
+    #{/tab}
+
+
+</form>

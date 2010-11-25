@@ -1,0 +1,44 @@
+#{extends 'main.html' /}
+
+<script type="text/javascript">
+
+    $(function(){
+
+        #{button_fnc obj:'.btn_edit', icon:'ui-icon-pencil', text:false/}
+        #{button_fnc obj:'.btn_delete', icon:'ui-icon-trash', text:false/}
+        #{button_fnc obj:'#btn_novo', icon:'ui-icon-plus'/}
+
+        #{grid_fnc/}
+
+    });
+
+
+</script>
+
+#{box}
+#{button label:'Novo Analista', id:'btn_novo', href:@Analistas.form()/}
+#{/box}
+
+
+#{grid titulo:'Lista de Analistas', rodape:'Foram encontrados um total de '+ analistas.size() +' analista(s)'}
+<table class="ui-grid-content ui-widget-content">
+    <thead>
+        <tr>
+            <th align="center" class="ui-state-default">&nbsp;</th>
+            <th align="left" class="ui-state-default">Nome</th>
+            <th align="left" class="ui-state-default">Especialidade</th>
+            <th align="left" class="ui-state-default">Cargo</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{list analistas, as:'a'}
+        <tr>
+            <td style="width:55px" class="ui-widget-content">#{button label:'Editar', class:'btn_edit', href:@Analistas.form(a.id)/}#{button label:'Excluir', class:'btn_delete', href:@Analistas.delete(a.id)/}</td>
+            <td style="text-align: left" class="ui-widget-content">${a.nome}</td>
+            <td style="width: 200px;text-align: left" class="ui-widget-content">${a.especialidade}</td>
+            <td style="width: 200px;text-align: left" class="ui-widget-content">${a.cargo.nome}</td>
+        </tr>
+        #{/list}
+    </tbody>
+</table>
+#{/grid}
