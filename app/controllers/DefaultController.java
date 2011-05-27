@@ -26,6 +26,15 @@ public class DefaultController extends Controller {
 
     public static void changeTema(String tema){
         Cache.set("tema", tema, "30mn");
-        Projetos.index();
+        redirect(Cache.get("url", String.class));
+    }
+
+    @Before
+    public static void changeController()
+    {
+        if(! request.controller.equals("DefaultController"))
+        {
+            Cache.set("url", request.url, "30mn");
+        }
     }
 }
