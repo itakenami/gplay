@@ -33,7 +33,7 @@
     <tbody>
         #{list analistas, as:'a'}
         <tr>
-            <td style="width:55px" class="ui-widget-content">#{button label:'Editar', class:'btn_edit', href:@Analistas.form(a.id)/}#{button label:'Excluir', class:'btn_delete', href:@Analistas.delete(a.id)/}</td>
+            <td style="width:55px" class="ui-widget-content">#{button label:'Editar', class:'btn_edit', href:@Analistas.form(a.id)/}#{button label:'Excluir', class:'btn_delete', href:@Analistas.delete(a.id), confirm:'Deseja excluir o analista?'/}</td>
             <td style="text-align: left" class="ui-widget-content">${a.nome}</td>
             <td style="width: 200px;text-align: left" class="ui-widget-content">${a.especialidade}</td>
             <td style="width: 200px;text-align: left" class="ui-widget-content">${a.cargo.nome}</td>

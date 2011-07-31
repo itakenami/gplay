@@ -31,7 +31,7 @@
     <tbody>
         #{list items:cargos, as:'c'}
         <tr>
-            <td style="width:55px" class="ui-widget-content">#{button label:'Editar', class:'btn_edit', href:@Cargos.form(c.id)/}#{button label:'Excluir', class:'btn_delete', href:@Cargos.delete(c.id)/}</td>
+            <td style="width:55px" class="ui-widget-content">#{button label:'Editar', class:'btn_edit', href:@Cargos.form(c.id)/}#{button label:'Excluir', class:'btn_delete', href:@Cargos.delete(c.id), confirm:'Deseja excluir o cargo?'/}</td>
             <td style="text-align: left" class="ui-widget-content">${c.nome.customizeTag()}</td>
         </tr>
         #{/list}

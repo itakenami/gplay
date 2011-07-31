@@ -48,7 +48,7 @@
         <tbody>
             #{list projetos, as:'p'}
             <tr>
-                <td style="width:55px" class="ui-widget-content">#{button label:'Editar', class:'btn_edit', href:@Projetos.form(p.id)/}#{button label:'Excluir', class:'btn_delete', href:@Projetos.delete(p.id)/}</td>
+                <td style="width:55px" class="ui-widget-content">#{button label:'Editar', class:'btn_edit', href:@Projetos.form(p.id)/}#{button label:'Excluir', class:'btn_delete', href:@Projetos.delete(p.id), confirm:'Deseja excluir o projeto?'/}</td>
                 <td style="width:300px;text-align: left" class="ui-widget-content"><a href="@{Projetos.view(p.id)}">${p.nome}</a></td>
                 <td style="text-align: left" class="ui-widget-content">${p.descricao}</td>
                 <td style="width:100px;text-align: center" class="ui-widget-content">${p.data_inicio?.format('dd/MM/yyyy')}</td>
