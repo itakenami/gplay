@@ -16,25 +16,17 @@ public class DefaultController extends Controller {
 
     @Before
     public static void setTema() {
-        String tema = Cache.get("tema", String.class);
+        String tema = Cache.get(session.getId()+"-tema", String.class);
         if (tema == null) {
             tema = "redmond";
-            Cache.set("tema", tema, "30mn");
+            Cache.set(session.getId()+"-tema", tema, "30mn");
         }
         renderArgs.put("tema", tema);
     }
 
     public static void changeTema(String tema){
-        Cache.set("tema", tema, "30mn");
-        redirect(Cache.get("url", String.class));
+        Cache.set(session.getId()+"-tema", tema, "30mn");
+        redirect("/");
     }
 
-    @Before
-    public static void changeController()
-    {
-        if(! request.controller.equals("DefaultController"))
-        {
-            Cache.set("url", request.url, "30mn");
-        }
-    }
 }
